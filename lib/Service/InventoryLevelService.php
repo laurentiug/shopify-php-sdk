@@ -3,6 +3,8 @@
 namespace Shopify\Service;
 
 use Shopify\Object\InventoryLevel;
+use Shopify\Object\InventoryAdjustment;
+use Shopify\Object\InventoryLevelAdjustment;
 
 class InventoryLevelService extends AbstractService
 {
@@ -18,5 +20,20 @@ class InventoryLevelService extends AbstractService
         $endpoint = '/admin/inventory_levels.json';
         $response = $this->request($endpoint, 'GET', $params);
         return $this->createCollection(InventoryLevel::CLASS, $response['inventory_levels']);
+    }
+
+    /**
+     * Adjusts the inventory level of an inventory item at a single location
+     * 
+     * @param InventoryAdjustment $inventoryAdjustment
+     * @return InventoryLevel
+     */
+    public function adjust(InventoryAdjustment $inventoryAdjustment)
+    {
+        $data = $inventoryAdjustment->exportData();
+        $endpoint = '/admin/inventory_levels/adjust.json';
+        $response = $this->request($endpoint, 'POST', $data);
+        
+        return $this->createObject(InventoryLevel::class, $response['inventory_level']);
     }
 }
