@@ -1,6 +1,6 @@
 {
-    "name": "robwittman/shopify-php-sdk",
-    "description": "PHP SDK for Shopify API",
+    "name": "laurentiug/shopify-php-sdk",
+    "description": "PHP SDK for Shopify API - fork from http://github.com/robwittman/shopify-php-sdk",
     "keywords": [
         "shopify",
         "ecommerce",
